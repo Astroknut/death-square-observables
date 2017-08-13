@@ -1,4 +1,9 @@
-<ul *ngIf="dataBanks">
-	<li>Turret {{dataBanks.turretNumber}} is functional</li>
-	<li>Damage is {{dataBanks.damage}}</li>
-</ul>
+<section>
+	<h3 *ngIf="(apiObservable | async) !== null">Turret Status</h3>
+	<ul>
+		<li *ngFor="let turret of apiObservable | async">
+			<h4>Turrent {{turret.turretNumber}}</h4>
+			<h4>Damage Level {{turret.damage}}</h4>
+		</li>
+	</ul>
+</section>

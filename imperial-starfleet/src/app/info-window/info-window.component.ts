@@ -12,7 +12,7 @@ import 'rxjs/add/operator/switchMap';
 })
 export class InfoWindowComponent implements OnInit {
 
-	dataBanks;
+	apiObservable;
   targetSubject = new Subject();
 
   constructor(
@@ -22,7 +22,7 @@ export class InfoWindowComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.dataBanks = this.targetSubject
+    this.apiObservable = this.targetSubject
         .switchMap(turretNumber=> this.infoWindowService.createAPIObservable(turretNumber));
   	this.route.params.forEach( param => {
   		this.findTurret(param.id);

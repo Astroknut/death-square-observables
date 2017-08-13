@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TieFighterComponent } from './tie-fighter/tie-fighter.component';
 import { InfoWindowComponent } from './info-window/info-window.component';
-import { InfoWindowService } from './info-window/info-window.service'
+import { InfoWindowService } from './info-window/info-window.service';
 
 @NgModule({
   declarations: [
@@ -18,8 +18,8 @@ import { InfoWindowService } from './info-window/info-window.service'
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpModule,
+    FormsModule,
     DeathSquareModule,
     AppRoutingModule
   ],
