@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
 import { ActivatedRoute }   from '@angular/router';
+import { Subject } from 'rxjs/Subject';
+import { InfoWindowService } from './info-window.service';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-info-window',
@@ -11,22 +13,25 @@ import { ActivatedRoute }   from '@angular/router';
 export class InfoWindowComponent implements OnInit {
 
 	dataBanks;
+  targetSubject = new Subject();
 
   constructor(
   	private http: Http,
-  	private route: ActivatedRoute
+  	private route: ActivatedRoute,
+    private infoWindowService: InfoWindowService
   ) { }
 
   ngOnInit() {
+    this.dataBanks = this.targetSubject
+        .switchMap(turretNumber=> this.infoWindowService.createAPIObservable(turretNumber));
   	this.route.params.forEach( param => {
   		this.findTurret(param.id);
   	});
   }
 
   findTurret(turretNumber){
-    this.http.get('http://localhost:3000/api/turret/'+turretNumber)
-    .toPromise()
-    .then(response => this.dataBanks = response.json());
+    this.targetSubject.next(turretNumber);
+    
 	}
 
 }

@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TieFighterComponent } from './tie-fighter/tie-fighter.component';
 import { InfoWindowComponent } from './info-window/info-window.component';
+import { InfoWindowService } from './info-window/info-window.service'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { InfoWindowComponent } from './info-window/info-window.component';
     DeathSquareModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [InfoWindowService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
